@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+@-webkit-keyframes open{
+	0%
+	{
+		-webkit-transform:rotateX(-120deg);
+	}
+	25%
+	{
+		-webkit-transform:rotateX(30deg);
+	}
+	50%
+	{
+		-webkit-transform:rotateX(-15deg);
+	}
+	75%
+	{
+		-webkit-transform:rotateX(8deg);
+	}
+	100%
+	{
+		-webkit-transform:rotateX(0deg);
+	}
+}
+@-webkit-keyframes clos
+{
+	0%
+	{
+		-webkit-transform:rotateX(0deg);
+	}
+	100%
+	{
+		-webkit-transform:rotateX(-120deg);
+	}
+}
+.wrap{width:520px; position:relative; -webkit-perspective:800px; margin:0 auto;}
+.wrap h3{ margin:0;height:88px;background:#694d4a; color:#000; line-height:88px; text-align:center; position:relative; z-index:10; cursor:pointer;}
+.wrap div{ position:absolute;top:82px;left:0; -webkit-transform-style:preserve-3d; width:100%; -webkit-transform-origin:top; -webkit-transform:rotateX(-120deg); z-index:1;}
+.wrap>div:nth-of-type(1){top:88px;}
+.wrap span{ display:block;height:70px;background:#CF3; color:#000;  padding:5px 10px;}
+.wrap .open{-webkit-transform:rotateX(0deg); -webkit-animation:1.5s open ease-in;}
+
+.wrap .clos{-webkit-transform:rotateX(-120deg); -webkit-animation:0.7s clos ease;}
+
+#btn{ transition:1s;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBtn=document.getElementById("btn");
+	var oWrap=document.getElementById("wrap");
+	var aDiv=oWrap.getElementsByTagName("div");
+	var i=0;
+	var oTimer=null;
+	var iDelay=200;
+	var Boff=true;
+	oBtn.onclick=function()
+	{
+		
+		if(Boff)
+		{
+			i=0;
+			oTimer=setInterval(function(){
+					aDiv[i].className="open";
+					if(i==aDiv.length-1)
+					{
+						clearInterval(oTimer);
+				
+					}
+					i++;
+			},iDelay);
+		}
+		else
+		{
+			i=aDiv.length-1;
+			oTimer=setInterval(function(){
+					aDiv[i].className="clos";
+					if(i==0)
+					{
+						clearInterval(oTimer);
+						
+					}
+					i--;
+			},iDelay);
+		}
+		Boff=!Boff;
+	};
+ 
+};
+</script>
+</head>
+<body>
+
+<div class="wrap" id="wrap">
+	<h3 id="btn">H5要学些什么？</h3>
+	<div>
+    	<span style=" background:#d09a80;">1、UI基础：PS/AI基础设计</span>
+        <div>
+        	<span style=" background:#c29e7c;">2、web前端基础：HTML5基础、CSS3、阶段性项目\UI交互设计、项目实战
+项目实践：登录界面、注册界面、产品详情页等</span>
+            <div>
+            	<span style=" background:#7b5622;">3、javaScript开发课程：JavaScript核心、DOM编程、阶段项目实战
+项目实践：交互实现</span>
+                <div>
+                	<span style=" background:#7e413c;">4、服务器端技术：HTTP协议、服务端、开发技术简介
+项目实践：TMOOC服务端、通信分析、部署</span>
+                    <div>
+                    	<span style=" background:#d88e81;">5、web前端高级：H5高级、项目实战、JQuery、Ajax
+项目实践：H5动态页面（小游戏类）、页面重构、服务器交互</span>
+                        <div>
+                        	<span style=" background:#664550;">6、框架技术：Bootstrap、AngularJS、阶段性项目
+项目实战：系统前端实现</span>
+                            <div>
+                            	<span style=" background:#c8a0ab;">7、node.js基础：平台搭建、web框架、node 网络应用</span>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
